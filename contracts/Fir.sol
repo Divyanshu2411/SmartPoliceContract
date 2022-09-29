@@ -15,7 +15,7 @@ contract FIR{
     string public policeStationCode; //to identify the unique policestations
     string public logs;// to store the log of each transaction.
 
-
+    //constructor
     function FIR( string Id,string recOffice, string recPerson, string complainer, string PS, string crime, string sec, string PSC, string log) public {
         Id= FIRID;
         recordingOfficer= recOffice;
