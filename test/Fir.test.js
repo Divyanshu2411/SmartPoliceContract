@@ -18,14 +18,14 @@ beforeEach(async () => {
   FIR1 = await new web3.eth.Contract(JSON.parse(interface))
     .deploy({
       data: bytecode,
-      arguments: ["Rahim","Abdul","Karim","Boriwali","Mobile Snatching","387","3234"],
+      arguments: ["IP#154","Rahim","Abdul","Karim","Boriwali","Mobile Snatching","387","3234","log1"],
     })
     .send({ from: accounts[0], gas: "1000000" });
 
   FIR2 = await new web3.eth.Contract(JSON.parse(interface))
     .deploy({
       data: bytecode,
-      arguments: ["Ram","Shiva","Karim","Boriwali","Mobile Snatching","45","3234"],
+      arguments: ["IP#159","Ram","Shiva","Karim","Boriwali","Mobile Snatching","45","3234","log2"],
     })
     .send({ from: accounts[0], gas: "1000000" });
   
@@ -62,7 +62,7 @@ describe("FIR1", () => {
   it("Recording officer", async()=>{
     const officer= await FIR1.methods.recordingOfficer().call();
     assert.equal("Rahim",officer);
-    console.log(await FIR1.methods.recordingOfficer().call()); //this is how you access the asynced data
+    // console.log(await FIR1.methods.recordingOfficer().call()); //this is how you access the asynced data
   });
   it("Recording Person", async()=>{
     const recPerson= await FIR1.methods.recordingPerson().call();

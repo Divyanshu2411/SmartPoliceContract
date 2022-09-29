@@ -5,6 +5,7 @@ pragma solidity ^0.4.17;
 
 contract FIR{
     //log to be added
+    string public FIRID; //to uniquely identify each FIR
     string public recordingOfficer; //officer incharge of the station
     string public recordingPerson; //the police personnel recording the FIR
     string public complainant; //the one who files the complaint
@@ -12,9 +13,11 @@ contract FIR{
     string public offence; //in the words of complainant
     string public section; //IPC sections applicable in the offence
     string public policeStationCode; //to identify the unique policestations
+    string public logs;// to store the log of each transaction.
 
 
-    function FIR( string recOffice, string recPerson, string complainer, string PS, string crime, string sec, string PSC) public {
+    function FIR( string Id,string recOffice, string recPerson, string complainer, string PS, string crime, string sec, string PSC, string log) public {
+        Id= FIRID;
         recordingOfficer= recOffice;
         recordingPerson=recPerson;
         complainant=complainer;
@@ -22,6 +25,7 @@ contract FIR{
         offence=crime;
         section=sec;
         policeStationCode=PSC;
+        logs=log;
     }
     
 }
