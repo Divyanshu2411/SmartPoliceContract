@@ -3,29 +3,27 @@ pragma solidity ^0.4.17;
 
 // contract code will go here
 
-contract FIR{
+contract complaint{
     //log to be added
-    string public FIRID; //to uniquely identify each FIR
-    string public recordingOfficer; //officer incharge of the station
-    string public recordingPerson; //the police personnel recording the FIR
+    string public FIRID; //to uniquely identify each complaint
+    string public recordingPerson; //the police personnel recording the complaint
     string public complainant; //the one who files the complaint
-    string public policeStation; //which police station it is
     string public offence; //in the words of complainant
     string public section; //IPC sections applicable in the offence
     string public policeStationCode; //to identify the unique policestations
-    string public logs;// to store the log of each transaction.
+    string public lastEditor;// to store the identity of who edited it last.
+    string public lastEdit; // to store what was last edited.
 
     //constructor
-    function FIR( string Id,string recOffice, string recPerson, string complainer, string PS, string crime, string sec, string PSC, string log) public {
+    function complaint( string Id, string recPerson, string complainer, string crime, string sec, string PSC, string editor, string edit) public {
         Id= FIRID;
-        recordingOfficer= recOffice;
         recordingPerson=recPerson;
         complainant=complainer;
-        policeStation=PS;
         offence=crime;
         section=sec;
         policeStationCode=PSC;
-        logs=log;
+        lastEditor=editor;
+        lastEdit= edit;
     }
     
 }
@@ -37,15 +35,15 @@ pragma solidity ^0.8.2;
 
 // contract code will go here
 
-contract FIR{
+contract complaint{
     string public recordingOfficer; //officer incharge of the station
-    string public recordingPerson; //the police personnel recording the FIR
+    string public recordingPerson; //the police personnel recording the complaint
     string public complainant; //the one who files the complaint
     string public policeStation; //which police station it is
     string public offence; //in the words of complainant
     string public section; //IPC sections applicable in the offence
     string public policeStationCode; //to identify the unique policestations
-    string[] completeFIR; //complete FIR in one variable
+    string[] completeFIR; //complete complaint in one variable
 
     constructor (string memory recOffice, string memory recPerson, string memory complainer, string memory PS, string memory crime, string memory sec, string memory PSC) public {
         recordingOfficer= recOffice;
