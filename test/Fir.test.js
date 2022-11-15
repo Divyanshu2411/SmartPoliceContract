@@ -65,6 +65,7 @@ before(async () => {
   // let l= await getLatestCommit();
   let lastEdit= await getLatestCommit();
   accounts = await web3.eth.getAccounts();
+  console.log(accounts);
   FIR1 = await new web3.eth.Contract(JSON.parse(interface))
     .deploy({
       data: bytecode,
@@ -113,9 +114,26 @@ describe("FIR1", () => {
     const latestCommitID= await FIR1.methods.lastEdit().call()
     console.log("latest commit: "+latestCommitID);
     dataFromCommitID(latestCommitID);
-
     assert("Ok");
 
   });
+
+  it("Updating IPC section", async()=>{
+    console.log("Original IPC SECTION:" + await FIR1.methods.section().call());
+    await FIR1.methods.updateSection("302").send({from: accounts[0]});
+    console.log("Updated IPC SECTION:" + await FIR1.methods.section().call());
+    console.log(await web3.eth.getBlock("latest"));
+    assert("Ok");
+  })
+
+  it("Trying to update from different account", async()=>{
+    try{
+      await FIR1.methods.updateSection("302").send({from: accounts[1]});
+      assert(false);
+    }
+    catch{
+      assert(true);
+    }
+  })
 
 });

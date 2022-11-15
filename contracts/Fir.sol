@@ -13,6 +13,7 @@ contract complaint{
     string public policeStationCode; //to identify the unique policestations
     string public lastEditor;// to store the identity of who edited it last.
     string public lastEdit; // to store what was last edited.
+    address public admin;
 
     //constructor
     function complaint( string Id, string recPerson, string complainer, string crime, string sec, string PSC, string editor, string edit) public {
@@ -24,6 +25,17 @@ contract complaint{
         policeStationCode=PSC;
         lastEditor=editor;
         lastEdit= edit;
+        admin= msg.sender;
+    }
+
+   
+    function updateSection(string newSection) public restricted{
+        section= newSection;
+    }
+
+    modifier restricted(){
+        require(msg.sender == admin);
+        _;
     }
     
 }
