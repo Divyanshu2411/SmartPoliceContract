@@ -11,8 +11,8 @@ contract complaint{
     string public offence; //in the words of complainant
     string public section; //IPC sections applicable in the offence
     string public policeStationCode; //to identify the unique policestations
-    string public lastEditor;// to store the identity of who edited it last.
-    string public lastEdit; // to store what was last edited.
+    string public lastEditor;// to store the identity of who edited it's FIR last on IPFS.
+    string public lastEdit; // to store what was last edited FIR on IPFS.
     address public admin;
 
     //constructor
@@ -29,9 +29,22 @@ contract complaint{
     }
 
    
-    function updateSection(string newSection) public restricted{
+    // function updateFIRID(string newFIRID) public restricted{
+    //     FIRID= newFIRID;
+    // }
+
+    // function updateSection(string newSection) public restricted{
+    //     section= newSection;
+    // }
+
+    // function updateSection(string newSection) public restricted{
+    //     section= newSection;
+    // }
+
+    function updateSection(string newSection) restricted public {
         section= newSection;
     }
+    
 
     modifier restricted(){
         require(msg.sender == admin);

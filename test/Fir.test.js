@@ -14,24 +14,22 @@ let FIR1;
 let FIR2;
 let editor;
 let edit;
+
 //function to get the whole IPFS log
 async function getLog(){
-  if(editor !== undefined) {
-    return editor;
-  }
-  else{
-      try{
-        data= await axios.get("https://api.github.com/repos/Divyanshu2411/FIRdata/commits")
-        // console.log(data.data[0]);
-        stringLog= JSON.stringify(data.data[0].commit.author);
-        // console.log(stringLog);
-        editor= stringLog;
-        return editor;
-      }
-      catch(error){
-        console.log(error.message)
+  
+    try{
+      data= await axios.get("https://api.github.com/repos/Divyanshu2411/FIRdata/commits")
+      // console.log(data.data[0]);
+      stringLog= JSON.stringify(data.data[0].commit.author);
+      // console.log(stringLog);
+      editor= stringLog;
+      return editor;
+    }
+    catch(error){
+      console.log(error.message)
     };
-  }
+  
   
 }
 
@@ -58,14 +56,19 @@ async function dataFromCommitID(indiCommit){
     console.log(error);
   }
 }
+
+
 before(async () => {
-  // Get a list of all accounts
   
+  // last editor stores the last commitor from github
   let lastEditor= await getLog();
-  // let l= await getLatestCommit();
+  // it stores the commit id of last edit.
   let lastEdit= await getLatestCommit();
+
+  // Get a list of all accounts
   accounts = await web3.eth.getAccounts();
   console.log(accounts);
+  
   FIR1 = await new web3.eth.Contract(JSON.parse(interface))
     .deploy({
       data: bytecode,
@@ -126,12 +129,12 @@ describe("FIR1", () => {
     assert("Ok");
   })
 
-  it("Trying to update from different account", async()=>{
+  it("Update from different account fails", async()=>{
     try{
       await FIR1.methods.updateSection("302").send({from: accounts[1]});
       assert(false);
     }
-    catch{
+    catch(err){
       assert(true);
     }
   })
