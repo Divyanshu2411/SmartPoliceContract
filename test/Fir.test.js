@@ -6,6 +6,8 @@ const web3 = new Web3(ganache.provider());
 const compile  = require("../compile");
 const axios = require('axios').default;
 
+const fs = require('fs');
+
 const interface= compile.interface;
 const bytecode= compile.bytecode;
 
@@ -15,6 +17,12 @@ let FIR2;
 let editor;
 let edit;
 
+
+//read wala code
+let absolutePath = __dirname+"/complaint.txt";
+//   let absolutePath = path.resolve(relativePath);
+  let fileContent = fs.readFileSync(absolutePath, "utf-8");
+console.log("file.txt console ",JSON.parse(fileContent));
 //function to get the whole IPFS log
 async function getLog(){
   

@@ -29,22 +29,29 @@ contract complaint{
     }
 
    
-    // function updateFIRID(string newFIRID) public restricted{
-    //     FIRID= newFIRID;
-    // }
+    function updateFIRID(string newFIRID) restricted public {
+        FIRID= newFIRID;
+    }
 
-    // function updateSection(string newSection) public restricted{
-    //     section= newSection;
-    // }
+    function updateRecordingPerson(string newRecPerson) restricted public {
+        recordingPerson= newRecPerson;
+    }
 
-    // function updateSection(string newSection) public restricted{
-    //     section= newSection;
-    // }
+    function updateComplaint(string newComplaint) restricted public {
+        complainant= newComplaint;
+    }
 
     function updateSection(string newSection) restricted public {
         section= newSection;
     }
     
+    function updateCrime(string newCrime) restricted public {
+        offence= newCrime;
+    }
+
+    function updatePSCcode(string newPSC) restricted public{
+        policeStationCode= newPSC;
+    }
 
     modifier restricted(){
         require(msg.sender == admin);

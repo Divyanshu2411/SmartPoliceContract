@@ -1,0 +1,1 @@
+{"complainantName":"Tushar","OffenseType":"Theft","OffensePlace":"College","OffenseDate":"2022-12-14","OffenseTime":"16:02","Offense":"                    I was bullied by amazing divyanshu","suspectDetails":"                    HOTTTTT, handsome and amazing"}
